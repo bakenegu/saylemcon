@@ -10,6 +10,33 @@ import { cn } from "@/lib/utils"; // Assuming a utils file exists or I will crea
 // Actually, I'll just use standard template literals for now to avoid dependency on a file I haven't checked/created.
 
 const megaMenuContent = {
+    "Our Company": {
+        highlight: {
+            eyebrow: "Our Company",
+            title: "People-first builders with a passion for shaping skylines.",
+            description:
+                "Discover our culture, history, and commitment to safety, inclusion, and community impact across every project we touch.",
+            ctaLabel: "About SAYLEM",
+            ctaHref: "#",
+        },
+        articles: [
+            {
+                title: "Leadership & Culture",
+                description: "Meet the team guiding innovation and operational excellence worldwide.",
+                image: "https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+            {
+                title: "Diversity, Equity & Inclusion",
+                description: "Programs designed to build belonging on our jobsites and in our offices.",
+                image: "https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+            {
+                title: "Community Impact",
+                description: "Volunteer initiatives and workforce development partnerships nationwide.",
+                image: "https://images.pexels.com/photos/3184433/pexels-photo-3184433.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+        ],
+    },
     "News & Insights": {
         highlight: {
             eyebrow: "News & Insights",
@@ -64,6 +91,60 @@ const megaMenuContent = {
             },
         ],
     },
+    "Our Projects": {
+        highlight: {
+            eyebrow: "Projects",
+            title: "Complex builds delivered across every market segment.",
+            description:
+                "From mission-critical to healthcare and cultural landmarks, explore how SAYLEM brings vision to life.",
+            ctaLabel: "View Projects",
+            ctaHref: "#",
+        },
+        articles: [
+            {
+                title: "Healthcare & Life Sciences",
+                description: "Patient-centered facilities integrating advanced technology.",
+                image: "https://images.pexels.com/photos/327920/pexels-photo-327920.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+            {
+                title: "Aviation & Transportation",
+                description: "Expanding mobility with terminals, transit hubs, and rail corridors.",
+                image: "https://images.pexels.com/photos/358220/pexels-photo-358220.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+            {
+                title: "Cultural & Mixed Use",
+                description: "Museums, arenas, and vibrant districts that anchor communities.",
+                image: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+        ],
+    },
+    Careers: {
+        highlight: {
+            eyebrow: "Careers",
+            title: "Build your future with teams who champion growth and belonging.",
+            description:
+                "From skilled craft to technology and project leadership, we offer pathways with mentorship, training, and competitive benefits.",
+            ctaLabel: "Explore Careers",
+            ctaHref: "#",
+        },
+        articles: [
+            {
+                title: "Early Career Programs",
+                description: "Internships and co-ops that put you on active jobsites from day one.",
+                image: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+            {
+                title: "Craft & Field Roles",
+                description: "Join self-perform crews building iconic structures nationwide.",
+                image: "https://images.pexels.com/photos/2760241/pexels-photo-2760241.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+            {
+                title: "Professional Opportunities",
+                description: "Project managers, VDC specialists, and business operations roles.",
+                image: "https://images.pexels.com/photos/3183198/pexels-photo-3183198.jpeg?auto=compress&cs=tinysrgb&w=600",
+            },
+        ],
+    },
 } satisfies Record<
     string,
     {
@@ -79,11 +160,11 @@ const megaMenuContent = {
 >;
 
 const navItems = [
-    { name: "Our Company", href: "#" },
+    { name: "Our Company", href: "#", megaKey: "Our Company" },
     { name: "Our Services", href: "#", megaKey: "Our Services" },
-    { name: "Our Projects", href: "#" },
+    { name: "Our Projects", href: "#", megaKey: "Our Projects" },
     { name: "News & Insights", href: "#", megaKey: "News & Insights" },
-    { name: "Careers", href: "#" },
+    { name: "Careers", href: "#", megaKey: "Careers" },
 ];
 
 export default function Navigation() {
@@ -100,8 +181,10 @@ export default function Navigation() {
 
     return (
         <motion.header
-            className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? "bg-black/80 backdrop-blur-md py-4" : "bg-transparent py-6"
-                }`}
+            className={cn(
+                "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
+                isScrolled ? "bg-white/95 backdrop-blur py-4 shadow-lg" : "bg-transparent py-6"
+            )}
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -111,7 +194,13 @@ export default function Navigation() {
                 onMouseLeave={() => setActiveMega(null)}
             >
                 {/* Logo Placeholder */}
-                <Link href="/" className="text-white font-bold text-2xl tracking-widest uppercase font-sans">
+                <Link
+                    href="/"
+                    className={cn(
+                        "font-bold text-2xl tracking-widest uppercase font-sans transition-colors",
+                        isScrolled ? "text-gray-900" : "text-white"
+                    )}
+                >
                     SAYLEM
                 </Link>
 
@@ -126,7 +215,13 @@ export default function Navigation() {
                                     href={item.href}
                                     className={cn(
                                         "relative group text-sm font-semibold tracking-wide uppercase transition-colors",
-                                        isActive ? "text-white" : "text-white/85"
+                                        isScrolled
+                                            ? isActive
+                                                ? "text-gray-900"
+                                                : "text-gray-600"
+                                            : isActive
+                                                ? "text-white"
+                                                : "text-white/85"
                                     )}
                                     onMouseEnter={() => setActiveMega(item.megaKey ?? null)}
                                     onFocus={() => setActiveMega(item.megaKey ?? null)}
@@ -144,7 +239,12 @@ export default function Navigation() {
                     </nav>
                     <Link
                         href="#"
-                        className="px-5 py-2 border border-white/30 text-white text-sm font-medium hover:bg-turner-red hover:border-turner-red transition-all duration-300"
+                        className={cn(
+                            "px-5 py-2 text-sm font-medium transition-all duration-300 border",
+                            isScrolled
+                                ? "border-gray-300 text-gray-900 hover:bg-turner-red hover:border-turner-red hover:text-white"
+                                : "border-white/30 text-white hover:bg-turner-red hover:border-turner-red"
+                        )}
                     >
                         Contact Us
                     </Link>
