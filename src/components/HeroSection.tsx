@@ -7,8 +7,9 @@ import { useState } from "react";
 export default function HeroSection() {
     const [isSearchFocused, setIsSearchFocused] = useState(false);
 
+
     return (
-        <section className="relative h-screen w-full overflow-hidden">
+        <section className="relative h-screen w-full overflow-hidden bg-black">
             {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video
@@ -16,8 +17,8 @@ export default function HeroSection() {
                     loop
                     muted
                     playsInline
-                    className="object-cover w-full h-full"
-                    poster="https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    preload="auto"
+                    className="absolute inset-0 w-full h-full object-cover"
                 >
                     <source
                         src="https://upload.wikimedia.org/wikipedia/commons/a/af/Cerro_Armazones_drone_footage.webm"
@@ -25,12 +26,12 @@ export default function HeroSection() {
                     />
                     Your browser does not support the video tag.
                 </video>
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/40" />
             </div>
+            {/* Dark Overlay on top of video */}
+            <div className="absolute inset-0 z-10 bg-black/40" />
 
             {/* Content Container */}
-            <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-center">
+            <div className="relative z-30 h-full container mx-auto px-6 flex flex-col justify-center">
 
                 {/* Main Typography */}
                 <div className="mt-20">
