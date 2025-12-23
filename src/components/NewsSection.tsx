@@ -12,7 +12,7 @@ const newsItems = [
         date: "Oct 20, 2025",
         title: "Sustainable Construction: Building for a Greener Future",
         description: "Exploring new materials and methodologies that reduce carbon footprints in large-scale commercial projects.",
-        image: "https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop",
         link: "#",
     },
     {
@@ -21,7 +21,7 @@ const newsItems = [
         date: "Oct 18, 2025",
         title: "SAYLEM Awarded Contract for New City Hospital Wing",
         description: "A $500M partnership to deliver state-of-the-art healthcare facilities to the downtown metro area.",
-        image: "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop",
         link: "#",
     },
     {
@@ -30,7 +30,7 @@ const newsItems = [
         date: "Oct 15, 2025",
         title: "Topping Out Ceremony at the Skyline Tower",
         description: "Celebrating a major milestone with our dedicated workforce and partners as the final beam is placed.",
-        image: "https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800&auto=format&fit=crop",
         link: "#",
     },
     {
@@ -39,7 +39,7 @@ const newsItems = [
         date: "Oct 10, 2025",
         title: "SAYLEM Volunteers Revitalize Local Park",
         description: "Over 100 employees gathered this weekend to plant trees and rebuild playgrounds in our community.",
-        image: "https://images.pexels.com/photos/3184433/pexels-photo-3184433.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop",
         link: "#",
     },
     {
@@ -48,7 +48,7 @@ const newsItems = [
         date: "Oct 05, 2025",
         title: "Implementing AI in Construction Safety Plans",
         description: "How predictive analytics are helping us prevent accidents before they happen on jobsites.",
-        image: "https://images.pexels.com/photos/8961408/pexels-photo-8961408.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
         link: "#",
     },
 ];

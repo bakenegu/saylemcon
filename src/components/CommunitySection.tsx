@@ -20,7 +20,7 @@ export default function CommunitySection() {
                     >
                         <motion.div style={{ y }} className="absolute inset-0 h-[120%] w-full -top-[10%]">
                             <Image
-                                src="https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1260&auto=format&fit=crop"
                                 alt="Construction worker overlooking city skyline"
                                 fill
                                 className="object-cover"

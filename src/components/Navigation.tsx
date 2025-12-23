@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils"; // Assuming a utils file exists or I will create one, actually I'll just inline clsx for now if utils doesn't exist.
@@ -9,7 +10,18 @@ import { cn } from "@/lib/utils"; // Assuming a utils file exists or I will crea
 // I'll create the utils file in the next step to be clean. For now, I will assume it exists or use standard class strings.
 // Actually, I'll just use standard template literals for now to avoid dependency on a file I haven't checked/created.
 
-const megaMenuContent = {
+type MegaMenuSection = {
+    highlight: {
+        eyebrow: string;
+        title: string;
+        description: string;
+        ctaLabel: string;
+        ctaHref: string;
+    };
+    articles: { title: string; description: string; image: string }[];
+};
+
+const megaMenuContent: Record<string, MegaMenuSection> = {
     "Our Company": {
         highlight: {
             eyebrow: "Our Company",
@@ -23,20 +35,21 @@ const megaMenuContent = {
             {
                 title: "Leadership & Culture",
                 description: "Meet the team guiding innovation and operational excellence worldwide.",
-                image: "https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Diversity, Equity & Inclusion",
                 description: "Programs designed to build belonging on our jobsites and in our offices.",
-                image: "https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Community Impact",
                 description: "Volunteer initiatives and workforce development partnerships nationwide.",
-                image: "https://images.pexels.com/photos/3184433/pexels-photo-3184433.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1593113598340-089ade0dd132?q=80&w=600&auto=format&fit=crop",
             },
         ],
     },
+    // ... other entries remain the same, just ensuring the type is applied
     "News & Insights": {
         highlight: {
             eyebrow: "News & Insights",
@@ -50,17 +63,17 @@ const megaMenuContent = {
             {
                 title: "Dornan Engineering Group expands Executive Leadership Team",
                 description: "Four divisional managing directors join to drive regional delivery.",
-                image: "https://images.pexels.com/photos/1181351/pexels-photo-1181351.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Turner Recognized by Forbes as one of America's Best Employers",
                 description: "Our people-first culture continues to earn national recognition.",
-                image: "https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Regional Team announced for new hospital expansion",
                 description: "Healthcare builders selected to deliver the Regional One Health project.",
-                image: "https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=600&auto=format&fit=crop",
             },
         ],
     },
@@ -77,17 +90,17 @@ const megaMenuContent = {
             {
                 title: "Preconstruction & Planning",
                 description: "Cost modeling, logistics, and constructability analysis for predictable delivery.",
-                image: "https://images.pexels.com/photos/3862372/pexels-photo-3862372.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Virtual Design & Construction",
                 description: "Immersive coordination leveraging BIM and digital twins.",
-                image: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Self-Perform Operations",
                 description: "Concrete, interiors, and specialty crafts executed by SAYLEM crews.",
-                image: "https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=600&auto=format&fit=crop",
             },
         ],
     },
@@ -104,17 +117,17 @@ const megaMenuContent = {
             {
                 title: "Healthcare & Life Sciences",
                 description: "Patient-centered facilities integrating advanced technology.",
-                image: "https://images.pexels.com/photos/327920/pexels-photo-327920.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1516549655169-df83a0929519?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Aviation & Transportation",
                 description: "Expanding mobility with terminals, transit hubs, and rail corridors.",
-                image: "https://images.pexels.com/photos/358220/pexels-photo-358220.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Cultural & Mixed Use",
                 description: "Museums, arenas, and vibrant districts that anchor communities.",
-                image: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600&auto=format&fit=crop",
             },
         ],
     },
@@ -131,33 +144,21 @@ const megaMenuContent = {
             {
                 title: "Early Career Programs",
                 description: "Internships and co-ops that put you on active jobsites from day one.",
-                image: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Craft & Field Roles",
                 description: "Join self-perform crews building iconic structures nationwide.",
-                image: "https://images.pexels.com/photos/2760241/pexels-photo-2760241.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop",
             },
             {
                 title: "Professional Opportunities",
                 description: "Project managers, VDC specialists, and business operations roles.",
-                image: "https://images.pexels.com/photos/3183198/pexels-photo-3183198.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=600&auto=format&fit=crop",
             },
         ],
     },
-} satisfies Record<
-    string,
-    {
-        highlight: {
-            eyebrow: string;
-            title: string;
-            description: string;
-            ctaLabel: string;
-            ctaHref: string;
-        };
-        articles: { title: string; description: string; image: string }[];
-    }
->;
+};
 
 const navItems = [
     { name: "Our Company", href: "#", megaKey: "Our Company" },
@@ -295,11 +296,13 @@ export default function Navigation() {
                                     <div className="grid grid-cols-3 gap-6">
                                         {activeMegaContent.articles.map((article, idx) => (
                                             <div key={idx} className="group">
-                                                <div className="rounded-lg overflow-hidden mb-4 shadow-sm transition-transform duration-300 group-hover:-translate-y-1">
-                                                    <img
+                                                <div className="relative h-28 w-full rounded-lg overflow-hidden mb-4 shadow-sm transition-transform duration-300 group-hover:-translate-y-1">
+                                                    <Image
                                                         src={article.image}
                                                         alt={article.title}
-                                                        className="h-28 w-full object-cover"
+                                                        fill
+                                                        className="object-cover"
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                     />
                                                 </div>
                                                 <h4 className="font-semibold text-gray-900 leading-snug mb-2">
