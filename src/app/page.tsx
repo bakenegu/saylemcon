@@ -4,6 +4,7 @@ import NewsSection from "@/components/NewsSection";
 import CommunitySection from "@/components/CommunitySection";
 import OurCultureSection from "@/components/OurCultureSection";
 import OurServicesSection from "@/components/OurServicesSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <CommunitySection />
       <OurCultureSection />
       <OurServicesSection />
+      <Footer />
     </main>
   );
 }
