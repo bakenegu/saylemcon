@@ -15,7 +15,7 @@ const allura = Allura({
 });
 
 export const metadata: Metadata = {
-  title: "Turner Construction Clone",
+  title: "SAYLEM Construction",
   description: "Pixel-perfect clone of Turner Construction hero section",
 };
 
